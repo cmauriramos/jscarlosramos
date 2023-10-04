@@ -73,25 +73,19 @@ function simular() {
 
     if (monto > 0 && monto <= 10000) {
         total = monto * 0.15;
-        //tot = total + monto;
-        //totcuota = tot / cuota;
 
     } else if (monto > 10000 && monto <= 20000) {
         total = monto * 0.25;
-        //tot = total + monto;
-        //totcuota = tot / cuota;
+
     } else if (monto > 20000 && monto <= 30000) {
         total = monto * 0.45;
-        //tot = total + monto;
-        //totcuota = tot / cuota;
+
     } else if (monto > 30000 && monto <= 40000) {
         total = monto * 0.65;
-        //tot = total + monto;
-        //totcuota = tot / cuota;
+
     } else if (monto > 40000 && monto <= 50000) {
         total = monto * 0.85;
-        //tot = total + monto;
-        //totcuota = tot / cuota;
+
     }
 
     function calcular() {
