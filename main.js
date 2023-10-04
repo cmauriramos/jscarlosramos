@@ -9,9 +9,46 @@ while (nombre == "") {
     nombre = prompt("Ingrese su nombre")
 }
 
-//let nuevoingreso = true
+alert("Antes de la simulacion, te solictaremos unos datos para nuestra base de datos:")
 
 
+
+const cliente = []
+
+function agregarcliente(nombre, apellido, edad, ciudad, tarjeta, banco) {
+    if (!nombre || !apellido || isNaN(edad) || !ciudad || !tarjeta || !banco) {
+        alert("Por favor, ingrese datos validos para el ingreso.")
+        return false
+    }
+    const fechaHoraIngreso = new Date()
+    const horaIngreso = `${fechaHoraIngreso.getHours()}:${fechaHoraIngreso.getMinutes()} ${fechaHoraIngreso.getHours() >= 12 ? 'PM' : 'AM'}`
+    const fechaIngreso = `${fechaHoraIngreso.getDate()}/${fechaHoraIngreso.getMonth() + 1}/${fechaHoraIngreso.getFullYear()}`
+
+    cliente.push({
+        nombre,
+        apellido,
+        edad,
+        ciudad,
+        tarjeta,
+        banco,
+        fechaHoraIngreso: `${fechaIngreso} ${horaIngreso}`
+    })
+    return true
+}
+
+function eliminarcliente() {
+    let listadoclientes = "Lista de clientes ingresados:\n"
+    cliente.forEach((cliente, index) => {
+        listadoclientes += `${index + 1}. ${cliente.nombre} ${cliente.apellido}\n`
+    })
+    const eliminar = prompt(listadoclientes + "\nIngrese el numero del cliente que desea eliminar:")
+    if (isNaN(eliminar) || eliminar < 1 || eliminar > cliente.length) {
+        alert("Numero de cliente es invalido.")
+    } else {
+        cliente.splice(eliminar - 1, 1)
+        alert("El Cliente ha sido eliminado correctamente.")
+    }
+}
 
 
 function simular() {
@@ -77,7 +114,35 @@ function simular() {
 
 }
 
-simular()
+
+while (true) {
+    const opcion = prompt("Seleccione una opcion:\n1. Agregar Cliente\n2. Eliminar Cliente\n3. Salir")
+
+    if (opcion === "1") {
+        const nombre = prompt("Ingrese el nombre:")
+        const apellido = prompt("Ingrese el apellido:")
+        const edad = parseInt(prompt("Ingrese la edad:"))
+        const ciudad = prompt("Ingrese la ciudad:")
+        const tarjeta = prompt("Ingrese que tarjeta de credito usa:")
+        const banco = prompt("Ingrese el banco emisor:")
+        const clienteAgregado = agregarcliente(nombre, apellido, edad, ciudad, tarjeta, banco)
+
+        if (clienteAgregado) {
+            alert("Cliente agregado con exito.")
+            alert("Pasamos a la simulacion")
+            simular()
+        }
+    } else if (opcion === "2") {
+        eliminarcliente()
+    } else if (opcion === "3") {
+        break
+    } else {
+        alert("Opcion invalida. Por favor, seleccione una opcion valida.")
+    }
+}
+
+
+//simular()
 
 
 
